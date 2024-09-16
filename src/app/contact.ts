@@ -1,5 +1,4 @@
 import fs from 'fs';
-import path from 'path';
 import readline from 'readline';
 import validator from 'validator';
 import chalk from 'chalk';
@@ -7,7 +6,7 @@ import { ContactInput, ContactOutput } from '../model/contact-model';
 
 class ContactModel {
 
-    public readContacts(): any[] {
+    public readContacts(): ContactOutput[] {
         if (!fs.existsSync('./data/contacts.json')) {
             fs.writeFileSync('./data/contacts.json', '[]');
         }
@@ -15,9 +14,10 @@ class ContactModel {
         return JSON.parse(file);
     }
 
-    public writeContacts(contacts: any[]): void {
+    public writeContacts(contacts: ContactOutput[]): void {
         fs.writeFileSync('./data/contacts.json', JSON.stringify(contacts));
     }
+
 }
 
 export class ContactApp extends ContactModel {
@@ -39,6 +39,7 @@ export class ContactApp extends ContactModel {
         console.log(chalk.blueBright('5. Exit'));
         console.log('-------------------------------');
     }
+
 
     public create({ name, email, telephone }: ContactInput): ContactOutput | void {
         const contacts = this.readContacts();
@@ -146,7 +147,7 @@ export class ContactApp extends ContactModel {
         return updatedContact;
     }
 
-    public static input(rl: readline.Interface, text: string): any {
+    public static input(rl: readline.Interface, text: string): Promise<string> {
         return new Promise((resolve) => {
             rl.question(text, (answer) => {
                 resolve(answer);
