@@ -1,0 +1,26 @@
+{
+  "name": "tugas-pbo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./dist/app/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.13",
+    "@types/validator": "^13.12.1",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "validator": "^13.12.0"
+  }
+}
