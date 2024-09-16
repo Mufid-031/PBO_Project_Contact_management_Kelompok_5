@@ -15,51 +15,51 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
 const contact_1 = require("./contact");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
+    const contactApp = new contact_1.ContactApp();
     while (true) {
-        contact_1.Contact.menu();
-        const rl = contact_1.Contact.rl();
-        rl.question('Masukkan pilihan Anda: ', (answer) => __awaiter(void 0, void 0, void 0, function* () {
-            switch (answer) {
-                case '1':
-                    const name = yield contact_1.Contact.input(rl, 'Masukkan Nama: ');
-                    const email = yield contact_1.Contact.input(rl, 'Masukkan Email: ');
-                    const telephone = yield contact_1.Contact.input(rl, 'Masukkan Telephone: ');
-                    const contact = contact_1.Contact.create({
-                        name,
-                        email,
-                        telephone
-                    });
-                    console.log(contact);
-                    break;
-                case '2':
-                    const contacts = contact_1.Contact.getContacts();
-                    if (contacts !== undefined) {
-                        console.log(contacts);
-                    }
-                    ;
-                    break;
-                case '3':
-                    const updatedContact = yield contact_1.Contact.update(rl, yield contact_1.Contact.input(rl, 'Masukkan Nama: '));
-                    if (updatedContact !== undefined) {
-                        console.log(updatedContact);
-                    }
-                    ;
-                    break;
-                case '4':
-                    const deletedContact = contact_1.Contact.delete(yield contact_1.Contact.input(rl, 'Masukkan Nama: '));
-                    console.log(deletedContact);
-                    break;
-                case '5':
-                    break;
-                default:
-                    console.log(chalk_1.default.redBright('Invalid input!'));
-                    break;
-            }
-            ;
-            rl.close();
-        }));
+        contact_1.ContactApp.menu();
+        const rl = contact_1.ContactApp.rl();
+        const answer = yield contact_1.ContactApp.input(rl, 'Masukkan pilihan Anda: ');
+        switch (answer) {
+            case '1':
+                const name = yield contact_1.ContactApp.input(rl, 'Masukkan Nama: ');
+                const email = yield contact_1.ContactApp.input(rl, 'Masukkan Email: ');
+                const telephone = yield contact_1.ContactApp.input(rl, 'Masukkan Telephone: ');
+                const contact = contactApp.create({ name, email, telephone });
+                if (contact) {
+                    console.log(chalk_1.default.greenBright('Contact Created:'), contact);
+                }
+                break;
+            case '2':
+                const contacts = contactApp.getContacts();
+                if (contacts) {
+                    console.log(contacts);
+                }
+                break;
+            case '3':
+                const nameToUpdate = yield contact_1.ContactApp.input(rl, 'Masukkan Nama: ');
+                const updatedContact = yield contact_1.ContactApp.update(rl, nameToUpdate);
+                if (updatedContact) {
+                    console.log(chalk_1.default.greenBright('Updated Contact:'), updatedContact);
+                }
+                break;
+            case '4':
+                const nameToDelete = yield contact_1.ContactApp.input(rl, 'Masukkan Nama: ');
+                const deletedContact = contactApp.delete(nameToDelete);
+                if (deletedContact) {
+                    console.log(chalk_1.default.greenBright('Deleted Contact:'), deletedContact);
+                }
+                break;
+            case '5':
+                console.log(chalk_1.default.greenBright('Exiting the application...'));
+                rl.close();
+                break;
+            default:
+                console.log(chalk_1.default.redBright('Invalid input!'));
+                break;
+        }
+        rl.close();
         break;
     }
-    ;
 });
 main();
