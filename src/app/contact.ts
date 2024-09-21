@@ -36,7 +36,8 @@ export class ContactApp extends ContactModel {
         console.log(chalk.blueBright('2. Read Contact'));
         console.log(chalk.blueBright('3. Update Contact'));
         console.log(chalk.blueBright('4. Delete Contact'));
-        console.log(chalk.blueBright('5. Exit'));
+        console.log(chalk.blueBright('5. Contact Detail'));
+        console.log(chalk.blueBright('6. Exit'));
         console.log('-------------------------------');
     }
 
@@ -153,12 +154,5 @@ export class ContactApp extends ContactModel {
                 resolve(answer);
             });
         });
-    }
-}
-
-class AdvancedContactApp extends ContactApp {
-    public create({ name, email, telephone }: ContactInput): ContactOutput | void {
-        console.log('Advanced validation before creating a contact...');
-        return super.create({ name, email, telephone });
     }
 }

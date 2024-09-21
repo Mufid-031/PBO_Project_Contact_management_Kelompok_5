@@ -43,7 +43,8 @@ class ContactApp extends ContactModel {
         console.log(chalk_1.default.blueBright('2. Read Contact'));
         console.log(chalk_1.default.blueBright('3. Update Contact'));
         console.log(chalk_1.default.blueBright('4. Delete Contact'));
-        console.log(chalk_1.default.blueBright('5. Exit'));
+        console.log(chalk_1.default.blueBright('5. Contact Detail'));
+        console.log(chalk_1.default.blueBright('6. Exit'));
         console.log('-------------------------------');
     }
     create({ name, email, telephone }) {
@@ -140,9 +141,3 @@ class ContactApp extends ContactModel {
     }
 }
 exports.ContactApp = ContactApp;
-class AdvancedContactApp extends ContactApp {
-    create({ name, email, telephone }) {
-        console.log('Advanced validation before creating a contact...');
-        return super.create({ name, email, telephone });
-    }
-}

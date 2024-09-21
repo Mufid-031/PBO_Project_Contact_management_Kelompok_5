@@ -51,6 +51,14 @@ const main = async () => {
                 break;
 
             case '5':
+                const nameToDetail = await ContactApp.input(rl, 'Masukkan Nama: ');
+                const detailContact = contactApp.detail(nameToDetail);
+                if (detailContact) {
+                    console.log(detailContact);
+                }
+                break;
+                
+            case '6':
                 console.log(chalk.greenBright('Exiting the application...'));
                 rl.close();
                 break;

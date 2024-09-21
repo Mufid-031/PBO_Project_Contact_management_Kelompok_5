@@ -51,6 +51,13 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                 }
                 break;
             case '5':
+                const nameToDetail = yield contact_1.ContactApp.input(rl, 'Masukkan Nama: ');
+                const detailContact = contactApp.detail(nameToDetail);
+                if (detailContact) {
+                    console.log(detailContact);
+                }
+                break;
+            case '6':
                 console.log(chalk_1.default.greenBright('Exiting the application...'));
                 rl.close();
                 break;
